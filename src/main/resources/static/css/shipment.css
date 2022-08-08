@@ -1,0 +1,4 @@
+@charset "UTF-8";
+
+body { text-align: center; border: 1px solid;}
+form { margin: auto; width: 200px; border: solid blue; display: block;}

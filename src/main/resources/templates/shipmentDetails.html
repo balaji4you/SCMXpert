@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Create Shipment</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="../static/css/shipment.css" rel="stylesheet">
+
+</head>
+<body>
+
+      
+ 	 <div class="container py-5 h-100">
+
+   
+      <div class="col-12 col-md-15 ">
+          <div class="card" style="border-radius: 15px;">
+           
+	<div class="m-4 ">
+
+     <h3 class="mb-5 text-center">Create New Shipment</h3>
+			<div th:if="${param.success}">
+					<div class="alert alert-info">You're Shipment Created  successfully </div>
+				</div>
+    <form th:action="@{/addShipment}" method="post" >
+        <div class="row mb-3">
+            <label for="invoiceNumber" class="col-sm-2 col-form-label">Shipment/Invoice Number</label>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" name="invoiceNumber" placeholder="Shipment/Invoice Number" pattern="[a-zA-Z0-9]+" title="Accept only Numbers" required>
+            </div>
+        </div>
+         <div class="row mb-3">
+            <label for="containerNumber" class="col-sm-2 col-form-label">Container Number</label>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" name="containerNumber" placeholder="Container Number"  pattern="[a-zA-Z0-9]+" title="Accept only Numbers"  required>
+            </div>
+        </div>
+         <div class="row mb-3">
+                 <label class="col-sm-2 col-form-label" for="shipmentDescription">Shipment Description</label>
+        <div class="col-sm-3">
+            <textarea class="form-control" name="shipmentDescription" placeholder="Enter Your Description"
+            style="overflow:auto;resize:none" rows="4" cols="20"  required></textarea>
+        </div>
+        </div>
+         <div class="row mb-3">
+          <label for="routeDetail" class="col-sm-2 col-form-label">Route Details</label>
+   		 <div class="col-sm-3">
+        <select class="form-select" >
+            <option>Select Route</option>
+           <option th:each="routeDetail:${routes}"
+								th:text="${routes}">
+        </select>
+    </div>
+        </div>
+         <div class="row mb-3">
+            <label for="goodsType" class="col-sm-2 col-form-label" >Goods Type</label>
+   		 <div class="col-sm-3">
+        <select class="form-select" name="goodsType">
+            <option>Select Goods</option>
+            <option >Heavy Load</option>
+            <option>Passenger Load</option>
+        </select>
+    </div>
+        </div>
+         <div class="row mb-3">
+             <label for="device" class="col-sm-2 col-form-label">Device</label>
+   		 <div class="col-sm-3">
+        <select class="form-select" name="device">
+            <option>Select Devices</option>
+            <option >Bus</option>
+            <option >Goods Carrier</option>
+        </select>
+    </div>
+        </div>
+         <div class="row mb-3">
+          <label for="expectedDeliverydate" class="col-sm-2 col-form-label">Expected Delivery Date</label>
+         <div class=" col-sm-3 md-form md-outline input-with-post-icon datepicker">
+  		<input placeholder="Expected Delivery Date" type="date" name="expectedDeliverydate" class="form-control">
+ 		</div>
+		</div>
+       
+         <div class="row mb-3">
+            <label for="poNumber" class="col-sm-2 col-form-label">PO Number</label>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" name="poNumber" placeholder="PONumber"  pattern="[0-9]+" title="Accept only Numbers" required>
+            </div>
+        </div>
+         <div class="row mb-3">
+            <label for="deliveryNumber" class="col-sm-2 col-form-label">Delivery Number</label>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" name="deliveryNumber" placeholder="DeliveryNumber" pattern="[0-9]+" title="Accept only Numbers" required>
+            </div>
+        </div>
+         <div class="row mb-3">
+            <label for="NdcNumber" class="col-sm-2 col-form-label">NDC Number</label>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" name="NdcNumber" placeholder="NDCNumber"  pattern="[0-9]+" title="Accept only Numbers" required>
+            </div>
+        </div>
+         <div class="row mb-3">
+            <label for="batchId" class="col-sm-2 col-form-label">Batch Id</label>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" name="batchId" placeholder="BatchId"  required>
+            </div>
+        </div>
+         <div class="row mb-3">
+            <label for="serialNumber" class="col-sm-2 col-form-label">Serial Number of Goods</label>
+            <div class="col-sm-3">
+                <input type="text" class="form-control" name="serialNumber" placeholder="Serial Number of Goods"   pattern="[0-9]+" title="Accept only Numbers"required>
+            </div>
+        </div>
+        
+       
+        <div class="row mb-5">
+            <div class="col-sm-10 offset-sm-2">
+                <button type="reset" class="btn btn-danger">Cancel Shipments </button>
+                <button type="submit" class="btn btn-danger">Create Shipment</button>
+            </div>
+           
+        </div>
+      
+    </form>
+</div>
+</div>
+</div>
+</div>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/rowreorder/1.2.8/js/dataTables.rowReorder.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+    <script src="../scripts/dashboardscripts.js"></script>
+</body>
+</html>
